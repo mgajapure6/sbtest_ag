@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,17 +31,6 @@ public abstract class BaseEntity implements Serializable{
 	
 	@LastModifiedBy
 	private String lastModifiedBy;
-	
-	@PrePersist
-	public void init() {
-		if(createdAt == null) {
-			createdAt = new Date();
-		}
-		
-		if(lastModifiedAt == null) {
-			lastModifiedAt = new Date();
-		}
-	}
 
 	public Date getCreatedAt() {
 		return createdAt;

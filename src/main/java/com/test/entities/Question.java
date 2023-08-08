@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.test.dto.QuestionDTO;
 
 @Entity
@@ -60,6 +61,7 @@ public class Question extends BaseEntity {
 	}
 
 	@Override
+	@JsonIgnore
 	public QuestionDTO getDTO() {
 		QuestionDTO questionDTO = new QuestionDTO();
 		BeanUtils.copyProperties(this, questionDTO);

@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.test.dto.CategoryDTO;
 
 @Entity
@@ -60,6 +61,7 @@ public class Category extends BaseEntity {
 	}
 
 	@Override
+	@JsonIgnore
 	public CategoryDTO getDTO() {
 		CategoryDTO categoryDTO = new CategoryDTO();
 		BeanUtils.copyProperties(this, categoryDTO);

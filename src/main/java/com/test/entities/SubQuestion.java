@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.test.dto.SubQuestionDTO;
 
 @Entity
@@ -42,6 +43,7 @@ public class SubQuestion extends BaseEntity {
 	}
 
 	@Override
+	@JsonIgnore
 	public SubQuestionDTO getDTO() {
 		SubQuestionDTO subQuestionDTO = new SubQuestionDTO();
 		BeanUtils.copyProperties(this, subQuestionDTO);

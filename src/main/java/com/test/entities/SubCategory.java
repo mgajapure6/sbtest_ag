@@ -1,6 +1,5 @@
 package com.test.entities;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.test.dto.SubCategoryDTO;
 
 @Entity
@@ -38,7 +38,7 @@ public class SubCategory extends BaseEntity {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "sub_category_id", referencedColumnName = "id")
-	private List<SubSectionCategory> subSectionCategories;
+	private Set<SubSectionCategory> subSectionCategories;
 
 	public Long getId() {
 		return id;
@@ -64,15 +64,16 @@ public class SubCategory extends BaseEntity {
 		this.questions = questions;
 	}
 
-	public List<SubSectionCategory> getSubSectionCategories() {
+	public Set<SubSectionCategory> getSubSectionCategories() {
 		return subSectionCategories;
 	}
 
-	public void setSubSectionCategories(List<SubSectionCategory> subSectionCategories) {
+	public void setSubSectionCategories(Set<SubSectionCategory> subSectionCategories) {
 		this.subSectionCategories = subSectionCategories;
 	}
 
 	@Override
+	@JsonIgnore
 	public SubCategoryDTO getDTO() {
 		SubCategoryDTO subCategoryDTO = new SubCategoryDTO();
 		BeanUtils.copyProperties(this, subCategoryDTO);
